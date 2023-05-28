@@ -8,13 +8,13 @@ import colorsys
 import cv2
 
 
-    # Define the bounding box of the sprite
+# Define the bounding box of the sprite
 sprite_x1 = 50
 sprite_y1 = 50
 sprite_x2 = 200
 sprite_y2 = 200
-def is_sprite_pixel(x, y):
 
+def is_sprite_pixel(x, y):
     # Check if the pixel is within the bounding box
     if x >= sprite_x1 and x <= sprite_x2 and y >= sprite_y1 and y <= sprite_y2:
         return True
@@ -30,37 +30,38 @@ class Application(Frame):
 
     def create_widgets(self):
         # Set the color scheme
-        self.master.config(bg='black')
-        fg_color = 'white'
-        button_color = 'gray'
+        self.master.config(bg='black')  # dark blue
+        fg_color = '#FFD600'  # gold
+        button_color = 'gray' 
+        button_font = ("Helvetica", 16)
 
         # Create a label for the image file path
-        self.file_label = Label(self, text="No file selected", bg='black', fg=fg_color, font=("Helvetica", 16))
+        self.file_label = Label(self, text="No file selected", bg='#283593', fg=fg_color, font=("Helvetica", 16))
         self.file_label.pack(pady=5)
 
         # Create a button to select the image file
-        self.file_button = Button(self, text="Select Image", command=self.select_file, bg=button_color, fg=fg_color)
+        self.file_button = Button(self, text="Select Image", command=self.select_file, bg=button_color, fg=fg_color, font=button_font)
         self.file_button.pack(pady=5)
 
         # Create a label for the number of files to output
-        self.num_files_label = Label(self, text="Number of Files:")
-        self.num_files_label.pack()
+        self.num_files_label = Label(self, text="Number of Files:", bg='#283593', fg=fg_color, font=("Helvetica", 16))
+        self.num_files_label.pack(pady=5)
 
         # Create an entry box for the number of files to output
         self.num_files_entry = Entry(self)
-        self.num_files_entry.pack()
+        self.num_files_entry.pack(pady=5)
 
         # Create a label for the output directory path
-        self.dir_label = Label(self)
-        self.dir_label.pack()
+        self.dir_label = Label(self, bg='#283593', fg=fg_color, font=("Helvetica", 16))
+        self.dir_label.pack(pady=5)
 
         # Create a button to select the output directory
-        self.dir_button = Button(self, text="Select Directory", command=self.select_dir)
-        self.dir_button.pack()
+        self.dir_button = Button(self, text="Select Directory", command=self.select_dir, bg=button_color, fg=fg_color, font=button_font)
+        self.dir_button.pack(pady=5)
 
         # Create a button to start the color change process
-        self.start_button = Button(self, text="Start", command=self.start)
-        self.start_button.pack()
+        self.start_button = Button(self, text="Start", command=self.start, bg=button_color, fg=fg_color, font=button_font)
+        self.start_button.pack(pady=10)
 
     def select_file(self):
         # Open a file dialog to select an image file
@@ -167,6 +168,16 @@ class Application(Frame):
 # Create a Tkinter window and start the application
 root = Tk()
 root.title("Knotz Color Changer")
+root.geometry("400x600")  # Set the window height greater than its width
+# Load the background image
+bg_image = PhotoImage(file="bg.png")  # replace "background.png" with your image's file path
+
+# Create a label with the image as its background
+bg_label = Label(root, image=bg_image)
+bg_label.place(x=0, y=0, relwidth=1, relheight=1)  # this makes the label fill the entire window
+
+# Set the color scheme
+root.config(bg='#283593')  # dark blue
 # Create a label widget with the text "All Rights Reserved, Knotz4Life, LLC."
 label = Label(root, text="All Rights Reserved, Knotz4Life, LLC.", borderwidth= 25)
 

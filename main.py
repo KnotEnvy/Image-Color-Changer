@@ -131,6 +131,7 @@ class Application(Frame):
         self.sprite_y1 = 0
         self.sprite_x2, self.sprite_y2 = img.size
 
+
         # Get the number of files to output and the selected output directory path
         num_files = int(self.num_files_entry.get())
         dir_path = self.dir_label.cget("text")
